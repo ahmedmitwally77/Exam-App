@@ -24,7 +24,7 @@ export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   // Mutations
-  const { isPending, error } = useLogin();
+  const { isPending, error, login } = useLogin();
 
   // Form
   const form = useForm<LoginFields>({
@@ -36,9 +36,7 @@ export function LoginForm() {
   });
 
   const onSubmit: SubmitHandler<LoginFields> = async (values) => {
-    // login(values);
-    console.log(values);
-    
+    login(values);
   };
 
   return (

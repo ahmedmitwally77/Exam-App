@@ -1,22 +1,12 @@
-import { User } from "next-auth";
-import { Cart } from "./card";
 import z from "zod";
-import { loginSchema } from "../schemas/auth.schema";
+import {
+  loginSchema,
+  registerSchema,
+  forgotPasswordSchema,
+} from "../schemas/auth.schema";
+import { User } from "next-auth";
 
-export interface RegisterFormFields {
-  cart: Cart;
-  email: string;
-  password: string;
-  age: number;
-  birthday: Date;
-  name: {
-    firstName: string;
-    lastName: string;
-  };
-  gender: "male" | "female";
-  termsAndConditions: boolean;
-}
-
+// API Response Types
 export type RegisterResponse = {
   token: string;
   user: User["user"];
@@ -27,8 +17,7 @@ export type LoginResponse = {
   user: User["user"];
 };
 
-export type LoginFields = z.infer<typeof loginSchema>;
 
-import { registerSchema, forgotPasswordSchema } from "../schemas/auth.schema";
+export type LoginFields = z.infer<typeof loginSchema>;
 export type RegisterFields = z.infer<typeof registerSchema>;
 export type ForgotPasswordFields = z.infer<typeof forgotPasswordSchema>;
