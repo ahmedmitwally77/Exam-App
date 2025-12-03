@@ -42,7 +42,7 @@ export function LoginForm() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center max-w-md mx-auto space-y-8">
+    <div className="w-full h-full  flex flex-col justify-center items-center max-w-md mx-auto space-y-8">
       {/* Form */}
       <div className="w-full">
         <h1 className="text-3xl font-bold text-gray-800 mb-10">Login</h1>
@@ -116,7 +116,7 @@ export function LoginForm() {
             <div className="flex justify-end mb-10">
               <Link
                 href="/forgot-password"
-                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                className="text-sm text-blue-600 font-geistMono hover:text-blue-700 font-medium"
               >
                 Forgot your password?
               </Link>
@@ -141,7 +141,7 @@ export function LoginForm() {
         </Form>
 
         {/* Sign up link */}
-        <div className="text-center text-sm text-gray-500">
+        <div className="text-center font-geistMono text-sm text-gray-500">
           Don&apos;t have an account?{" "}
           <Link
             href="/register"

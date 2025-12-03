@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { GeistMono } from "geist/font/mono";
 import Providers from "@/components/providers";
+
 
 export const metadata: Metadata = {
   title: "Exam App",
@@ -21,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${inter.className} bg-background text-foreground antialiased  font-[var(--font-inter)]`}
+        className={`${inter.variable} ${inter.className} ${GeistMono.variable} bg-background text-foreground antialiased  font-[var(--font-inter)]`}
       >
         <Providers>{children}</Providers>
       </body>

@@ -29,5 +29,6 @@ export type LoginResponse = {
 
 export type LoginFields = z.infer<typeof loginSchema>;
 
-import { registerSchema } from "../schemas/auth.schema";
+import { registerSchema, forgotPasswordSchema } from "../schemas/auth.schema";
 export type RegisterFields = z.infer<typeof registerSchema>;
+export type ForgotPasswordFields = z.infer<typeof forgotPasswordSchema>;

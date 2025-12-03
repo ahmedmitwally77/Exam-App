@@ -59,6 +59,7 @@ const config: Config = {
       },
       fontFamily: {
         inter: ["var(--font-inter)"],
+        geistMono: ["var(--font-geist-mono)"],
       },
     },
   },

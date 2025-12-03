@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -20,6 +19,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { ErrorMessage } from "@/components/ui/error-message";
 import { cn } from "@/lib/utils/tailwind-merge";
+import { PhoneInput } from "@/components/ui/phone-input";
 
 export function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -43,7 +43,7 @@ export function RegisterForm() {
   });
 
   const onSubmit: SubmitHandler<RegisterFields> = async (values) => {
-    register(values);
+    // register(values);
     console.log(values);
   };
 
@@ -58,14 +58,14 @@ export function RegisterForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {/* First Name & Last Name */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-y-4 gap-x-3">
               {/* First Name */}
               <FormField
                 control={form.control}
                 name="firstName"
                 render={({ field, fieldState }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium text-gray-800">
+                    <FormLabel className="text-base font-medium text-gray-800">
                       First name
                     </FormLabel>
                     <FormControl>
@@ -91,7 +91,7 @@ export function RegisterForm() {
                 name="lastName"
                 render={({ field, fieldState }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium text-gray-800">
+                    <FormLabel className="text-base font-medium text-gray-800">
                       Last name
                     </FormLabel>
                     <FormControl>
@@ -118,7 +118,7 @@ export function RegisterForm() {
               name="username"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-gray-800">
+                  <FormLabel className="text-base font-medium text-gray-800">
                     Username
                   </FormLabel>
                   <FormControl>
@@ -143,7 +143,7 @@ export function RegisterForm() {
               name="email"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-gray-800">
+                  <FormLabel className="text-base font-medium text-gray-800">
                     Email
                   </FormLabel>
                   <FormControl>
@@ -168,26 +168,19 @@ export function RegisterForm() {
               name="phone"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-gray-800">
+                  <FormLabel className="text-base font-medium text-gray-800">
                     Phone
                   </FormLabel>
                   <FormControl>
-                    <div className="flex gap-2">
-                      <div className="flex items-center gap-2 px-3 h-11 border rounded-md bg-gray-50">
-                        <span className="text-xl">🇪🇬</span>
-                        <span className="text-sm text-gray-600">EG(+20)</span>
-                      </div>
-                      <Input
-                        {...field}
-                        type="tel"
-                        placeholder="1012345678"
-                        className={cn(
-                          "h-11 flex-1 focus:ring-blue-600 focus:ring-2 focus:outline-none placeholder:text-gray-400",
-                          fieldState.error &&
-                            "border-red-500 focus:ring-red-500"
-                        )}
-                      />
-                    </div>
+                    <PhoneInput
+                      defaultCountry="EG"
+                      placeholder="Enter a phone number"
+                      {...field}
+                      className={cn(
+                        "h-11 focus:ring-blue-600 focus:ring-2 focus:outline-none placeholder:text-gray-400",
+                        fieldState.error && "border-red-500 focus:ring-red-500"
+                      )}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -200,7 +193,7 @@ export function RegisterForm() {
               name="password"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-gray-800">
+                  <FormLabel className="text-base font-medium text-gray-800">
                     Password
                   </FormLabel>
                   <FormControl>
@@ -239,7 +232,7 @@ export function RegisterForm() {
               name="confirmPassword"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-gray-800">
+                  <FormLabel className="text-base font-medium text-gray-800">
                     Confirm Password
                   </FormLabel>
                   <FormControl>
@@ -293,7 +286,7 @@ export function RegisterForm() {
         </Form>
 
         {/* Login link */}
-        <div className="text-center text-sm text-gray-500 mt-6">
+        <div className="text-center font-geistMono text-sm text-gray-500 mt-6">
           Already have an account?{" "}
           <Link
             href="/login"

@@ -25,7 +25,7 @@ const features = [
 export default function AuthAside() {
   return (
     <aside className="relative overflow-hidden py-[7.2rem] min-h-screen">
-      <div className="max-w-md mx-auto mb-32">
+      <div className="max-w-md font-geistMono mx-auto mb-32">
         <LogoHeading />
       </div>
 
@@ -34,7 +34,7 @@ export default function AuthAside() {
           Empower your learning journey with our smart exam platform.
         </h1>
 
-        <div className="flex flex-col gap-9">
+        <div className="flex flex-col font-geistMono gap-9">
           {features.map((feature) => (
             <div key={feature.title} className="flex gap-5">
               <div className="flex-shrink-0 w-9 h-9 flex items-center justify-center border-[1.5px] border-blue-600">
