@@ -26,7 +26,7 @@ export function RegisterForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Mutations
-  const { isPending, error, register } = useRegister();
+  const { isPending, error } = useRegister();
 
   // Form
   const form = useForm<RegisterFields>({
