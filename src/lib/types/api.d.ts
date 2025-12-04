@@ -8,3 +8,11 @@ declare type SuccessResponse<T> = {
 } & T;
 
 declare type ApiResponse<T> = ErrorResponse | SuccessResponse<T>;
+
+declare type SubjectsMetadata = {
+  currentPage: number;
+  numberOfPages: number;
+  limit: number;
+  nextPage?: number;
+  prevPage?: number;
+};

@@ -6,7 +6,6 @@ const protectedRoutes = ["^/dashboard.*$"];
 
 export default async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
-  console.log("token here", token);
 
   // Check for protected routes
   if (
