@@ -16,17 +16,20 @@ export const authOption: NextAuthOptions = {
         password: {}, // your password
       },
       authorize: async (credentials) => {
-        const response = await fetch(`${process.env.API}/auth/signin`, {
-          method: "POST",
-          body: JSON.stringify({
-            email: credentials?.email,
-            password: credentials?.password,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const payload: ApiResponse<LoginResponse> = await response.json(); 
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/signin`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              email: credentials?.email,
+              password: credentials?.password,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const payload: ApiResponse<LoginResponse> = await response.json();
 
         if ("code" in payload) {
           // ع حسب كل باك اند
