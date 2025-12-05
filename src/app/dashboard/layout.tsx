@@ -9,9 +9,9 @@ export default function Layout({ children }: Props) {
   return (
     <div className="relative flex">
       <DashAside />
-      <main className="flex-1  min-h-screen">
+      <main className="flex-1 bg-gray-50 min-h-screen">
         <PageBreadcrumb />
-        <section className="bg-gray-50">{children}</section>
+        <section className="p-6">{children}</section>
       </main>
     </div>
   );

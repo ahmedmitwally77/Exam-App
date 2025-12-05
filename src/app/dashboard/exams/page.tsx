@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { BookOpenCheck, Timer } from "lucide-react";
-import PageHeader from "@/components/ui/page-header";
+import { Timer } from "lucide-react";
 import { getExamsBySubject } from "./_services/get-exams.service";
 import type { ExamsData, Exam } from "@/lib/types/exams";
 
@@ -16,10 +15,6 @@ export default async function Page() {
 
   return (
     <div className="min-h-screen w-full">
-      {/* Main Content */}
-      {/* Header */}
-      <PageHeader title="Exams" icon={BookOpenCheck} />
-
       {/* Exams List */}
       <div className="space-y-4 mb-4 p-6 bg-white">
         {exams.map((exam: Exam) => (

@@ -1,7 +1,7 @@
 "use client";
-
-import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
+import React from "react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -10,39 +10,62 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-type TPathes = string[];
-
 export default function PageBreadcrumb() {
-  const [isActive, setIsActive] = useState<string>("");
-  const pathes: TPathes = location.pathname
-    .split("/")
-    .filter(Boolean)
-    .filter((item) => item.toLowerCase() !== "dashboard");
-  pathes.unshift("Home");
+  const pathname = usePathname(); // e.g., /dashboard/account/change-password
 
-  useEffect(() => {
-    setIsActive(pathes[pathes.length - 1].toLowerCase());
-  }, [pathes]);
+  if (!pathname) return null;
+
+  // Get segments
+  let segments = pathname.split("/").filter(Boolean); // ["dashboard", "account", "change-password"]
+  segments = segments.filter((seg) => seg !== "dashboard"); // Remove 'dashboard' segment => ["account", "change-password"]
+
+  // Add Home at the beginning
+  const pathes = ["Home", ...segments]; // ["Home", "account", "change-password"]
+
+  // Helper functions to convert cable-case to Title Case
+  const autoFormat = (str: string) =>
+    str
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
+
+  // Helper functions to get title
+  const getTitle = (item: string) => {
+    if (item === "Home") return "Home";
+    return autoFormat(item);
+  };
+
+  // Helper functions to get href
+  const getHref = (item: string, index: number) => {
+    if (item === "Home") return "/";
+    if (index === 0) return "/";
+    // Build path from segments up to current index (excluding Home)
+    const segmentsUpToHere = segments.slice(0, index);
+    return "/dashboard/" + segmentsUpToHere.join("/");
+  };
 
   return (
-    <div className="p-4">
-      <Breadcrumb>
+    <div className="p-4 bg-white BreadcrumbContainer">
+      <Breadcrumb aria-label="Page Breadcrumb">
         <BreadcrumbList>
           {pathes.map((item, index) => {
             const isLast = index === pathes.length - 1;
+            const title = getTitle(item);
+            const href = getHref(item, index);
+
             return (
               <React.Fragment key={index}>
                 <BreadcrumbItem>
                   <BreadcrumbLink className="font-geistMono text-sm" asChild>
                     <Link
                       className={
-                        isActive === item.toLowerCase()
+                        isLast
                           ? "text-blue-500 hover:text-blue-600"
                           : "text-gray-400 hover:text-blue-600"
                       }
-                      href={item === "Home" ? "/" : item.toLowerCase() || "#"}
+                      href={href}
                     >
-                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                      {title}
                     </Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>

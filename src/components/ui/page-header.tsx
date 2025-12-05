@@ -1,15 +1,40 @@
-import React from "react";
-import { LucideIcon } from "lucide-react";
+"use client";
+
+import React, { ReactNode } from "react";
+import { ArrowLeft } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
 
 interface PageHeaderProps {
   title: string;
-  icon: LucideIcon;
+  icon: ReactNode;
 }
 
-export default function PageHeader({ title, icon: Icon }: PageHeaderProps) {
+export default function PageHeader({ title, icon }: PageHeaderProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Check if we should show back button
+  // Don't show on dashboard root or if only one segment after filtering
+  const segments = pathname.split("/").filter(Boolean);
+  const filteredSegments = segments.filter((seg) => seg !== "dashboard");
+  const showBackButton = filteredSegments.length > 0;
+
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <div className="bg-blue-600 p-4 mb-6 flex items-center gap-4">
-      <Icon className="w-11 h-11 text-white" strokeWidth={2} />
+      {showBackButton && (
+        <button
+          onClick={handleBack}
+          className="p-2 hover:bg-blue-700 rounded-lg transition-colors"
+          aria-label="Go back"
+        >
+          <ArrowLeft className="w-6 h-6 text-white" />
+        </button>
+      )}
+      {icon}
       <h1 className="text-3xl font-semibold text-white">{title}</h1>
     </div>
   );

@@ -2,8 +2,6 @@ import React from "react";
 import { getQuestionsByExam } from "./_services/get-questions.service";
 import type { QuestionsData } from "@/lib/types/questions";
 import QuizForm from "./_components/quiz-form";
-import PageHeader from "@/components/ui/page-header";
-import { CircleQuestionMark } from "lucide-react";
 
 interface PageProps {
   params: {
@@ -29,11 +27,8 @@ export default async function Page({ params }: PageProps) {
     );
   }
 
-  const examTitle = questions[0]?.exam?.title || "Exam";
-
   return (
     <div>
-      <PageHeader title={examTitle} icon={CircleQuestionMark} />
       <QuizForm questions={questions} />
     </div>
   );
