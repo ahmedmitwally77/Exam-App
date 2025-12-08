@@ -10,16 +10,14 @@ export default function useLogin() {
         password: fields.password,
         redirect: false,
       });
-
       if (!response?.ok) {
         throw new Error(response?.error || "Login failed, please try again.");
       }
-
       return response;
     },
     onSuccess: () => {
-      const callbackUrl = new URLSearchParams(location.search).get("callbackUrl") || "/dashboard";
-
+      const callbackUrl =
+        new URLSearchParams(location.search).get("callbackUrl") || "/dashboard";
       location.href = callbackUrl;
     },
   });

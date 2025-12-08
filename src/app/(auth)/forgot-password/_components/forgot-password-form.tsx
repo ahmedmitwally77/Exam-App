@@ -22,7 +22,6 @@ export function ForgotPasswordForm() {
   };
 
   const handleResetComplete = () => {
-    // Redirect to login or show success message
     console.log("Password reset complete");
   };
 

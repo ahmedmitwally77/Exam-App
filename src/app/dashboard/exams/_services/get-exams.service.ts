@@ -9,7 +9,7 @@ export async function getExamsBySubject(): Promise<ApiResponse<ExamsData>> {
   }
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/exams`, {
+    const response = await fetch(`${process.env.API_URL}/exams`, {
       method: "GET",
       headers: {
         token: token.accessToken,

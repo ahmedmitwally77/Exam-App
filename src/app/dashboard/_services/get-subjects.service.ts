@@ -10,7 +10,7 @@ export async function getAllSubjects() {
   }
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/subjects?limit=6&page=1`,
+      `${process.env.API_URL}/subjects?limit=6&page=1`,
       {
         method: "GET",
         headers: {

@@ -1,6 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { LoginResponse } from "./lib/types/auth";
+import { loginService } from "./app/(auth)/login/_services/login.service";
 
 export const authOption: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET,
@@ -20,26 +20,13 @@ export const authOption: NextAuthOptions = {
         password: {}, // your password
       },
       authorize: async (credentials) => {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/signin`,
-          {
-            method: "POST",
-            body: JSON.stringify({
-              email: credentials?.email,
-              password: credentials?.password,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const payload: ApiResponse<LoginResponse> = await response.json();
-
+        const payload = await loginService({
+          email: credentials!.email || "",
+          password: credentials!.password || "",
+        });
         if ("code" in payload) {
-          // ع حسب كل باك اند
           throw new Error(payload.message);
         }
-
         return {
           id: payload.user._id,
           accessToken: payload.token,

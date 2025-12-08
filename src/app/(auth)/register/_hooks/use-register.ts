@@ -1,39 +1,25 @@
 import { useMutation } from "@tanstack/react-query";
+import { registerService } from "../_services/register.service";
+import { useRouter } from "next/navigation";
 import { RegisterFields } from "@/lib/types/auth";
-import { signIn } from "next-auth/react";
 
 export default function useRegister() {
+  // Navigation
+  const router = useRouter();
+
+  // Mutation
   const { isPending, error, mutate } = useMutation({
     mutationFn: async (fields: RegisterFields) => {
-      // Here you would call your registration API
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(fields),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(
-          error.message || "Registration failed, please try again."
-        );
+      const payload = await registerService(fields);
+      if ("code" in payload) {
+        throw new Error(payload.message);
       }
-
-      return response.json();
+      return payload;
     },
-    onSuccess: async (data, variables) => {
-      // Auto login after successful registration
-      const response = await signIn("credentials", {
-        email: variables.email,
-        password: variables.password,
-        redirect: false,
-      });
+    onSuccess: () => {
+      // Show toast
 
-      if (response?.ok) {
-        location.href = "/dashboard";
-      }
+      router.push("/login");
     },
   });
 

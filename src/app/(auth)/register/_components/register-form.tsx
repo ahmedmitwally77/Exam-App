@@ -26,7 +26,7 @@ export function RegisterForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Mutations
-  const { isPending, error } = useRegister();
+  const { isPending, error, register } = useRegister();
 
   // Form
   const form = useForm<RegisterFields>({
@@ -37,14 +37,16 @@ export function RegisterForm() {
       email: "",
       phone: "",
       password: "",
-      confirmPassword: "",
+      rePassword: "",
     },
     resolver: zodResolver(registerSchema),
   });
-
   const onSubmit: SubmitHandler<RegisterFields> = async (values) => {
-    // register(values);
-    console.log(values);
+    // bug
+    const localPhone = values.phone.startsWith("+20")
+      ? "0" + values.phone.slice(3)
+      : values.phone;
+    register({ ...values, phone: localPhone });
   };
 
   return (
@@ -229,7 +231,7 @@ export function RegisterForm() {
             {/* Confirm Password */}
             <FormField
               control={form.control}
-              name="confirmPassword"
+              name="rePassword"
               render={({ field, fieldState }) => (
                 <FormItem>
                   <FormLabel className="text-base font-medium text-gray-800">

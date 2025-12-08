@@ -89,7 +89,8 @@ export function LoginForm() {
                         placeholder="••••••••"
                         className={cn(
                           "h-11 focus:ring-blue-600 focus:ring-2 focus:outline-none placeholder:text-gray-400 border-gray-200 pr-10",
-                          fieldState.error && "border-red-500 focus:ring-red-500"
+                          fieldState.error &&
+                            "border-red-500 focus:ring-red-500"
                         )}
                       />
                       <button
@@ -131,7 +132,7 @@ export function LoginForm() {
             <Button
               type="submit"
               className="w-full h-11 bg-blue-600 mb-12 hover:bg-blue-700 text-white font-medium"
-              disabled={isPending}
+              disabled={isPending || (!form.formState.isValid && form.formState.isSubmitted)}
             >
               {isPending ? "Logging in..." : "Login"}
             </Button>
@@ -150,6 +151,5 @@ export function LoginForm() {
         </div>
       </div>
     </div>
-
   );
 }
