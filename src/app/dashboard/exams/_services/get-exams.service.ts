@@ -8,28 +8,17 @@ export async function getExamsBySubject(): Promise<ApiResponse<ExamsData>> {
     throw new Error("No token found");
   }
 
-  try {
-    const response = await fetch(`${process.env.API_URL}/exams`, {
-      method: "GET",
-      headers: {
-        token: token.accessToken,
-      },
-      cache: "no-store",
-    });
+  const response = await fetch(`${process.env.API_URL}/exams`, {
+    method: "GET",
+    headers: {
+      token: token.accessToken,
+    },
+    cache: "no-store",
+  });
 
-    if (!response.ok) {
-      return {
-        message: "Failed to fetch exams",
-        code: response.status,
-      };
-    }
-
-    const data = await response.json();
-    return data;
-  } catch {
-    return {
-      message: "Network error occurred",
-      code: 500,
-    };
+  const payload = await response.json();
+  if ("code" in payload) {
+    throw new Error(payload.message);
   }
+  return payload;
 }

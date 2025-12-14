@@ -3,6 +3,7 @@ import {
   loginSchema,
   registerSchema,
   forgotPasswordSchema,
+  forgotPasswordFormSchema,
 } from "../schemas/auth.schema";
 import { User } from "next-auth";
 
@@ -17,7 +18,7 @@ export type LoginResponse = {
   user: User["user"];
 };
 
-
 export type LoginFields = z.infer<typeof loginSchema>;
 export type RegisterFields = z.infer<typeof registerSchema>;
 export type ForgotPasswordFields = z.infer<typeof forgotPasswordSchema>;
+export type ForgotPasswordFormData = z.infer<typeof forgotPasswordFormSchema>;

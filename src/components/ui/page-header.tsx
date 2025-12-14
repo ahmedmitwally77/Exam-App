@@ -20,22 +20,27 @@ export default function PageHeader({ title, icon }: PageHeaderProps) {
   const showBackButton = filteredSegments.length > 0;
 
   const handleBack = () => {
-    router.back();
+    const segments = pathname.split("/").filter(Boolean);
+    segments.pop();
+    const parentPath = "/" + segments.join("/");
+    router.push(parentPath);
   };
 
   return (
-    <div className="bg-blue-600 p-4 mb-6 flex items-center gap-4">
+    <div className="flex gap-2 mb-6">
       {showBackButton && (
         <button
           onClick={handleBack}
-          className="p-2 hover:bg-blue-700 rounded-lg transition-colors"
+          className="bg-white p-4 border-2 border-blue-600 hover:bg-gray-50 transition-colors flex items-center justify-center"
           aria-label="Go back"
         >
-          <ArrowLeft className="w-6 h-6 text-white" />
+          <ArrowLeft className="w-6 h-6 text-blue-600" />
         </button>
       )}
-      {icon}
-      <h1 className="text-3xl font-semibold text-white">{title}</h1>
+      <div className="bg-blue-600 p-4 flex items-center gap-4 flex-1">
+        {icon}
+        <h1 className="text-3xl font-semibold text-white">{title}</h1>
+      </div>
     </div>
   );
 }

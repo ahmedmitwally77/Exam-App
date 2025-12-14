@@ -29,3 +29,39 @@ export type QuestionsData = {
 };
 
 export type QuestionsResponse = ApiResponse<QuestionsData>;
+
+export type SubmitExamAnswer = {
+  questionId: string;
+  correct: string;
+};
+
+export type SubmitExamPayload = {
+  answers: SubmitExamAnswer[];
+  time: number;
+};
+
+export type WrongQuestion = {
+  QID: string;
+  Question: string;
+  inCorrectAnswer: string;
+  correctAnswer: string;
+  answers: Record<string, unknown>;
+};
+
+export type CorrectQuestion = {
+  QID: string;
+  Question: string;
+  correctAnswer: string;
+  answers: Record<string, unknown>;
+};
+
+export type ExamResultData = {
+  message: string;
+  correct: number;
+  wrong: number;
+  total: string;
+  WrongQuestions: WrongQuestion[];
+  correctQuestions: CorrectQuestion[];
+};
+
+export type ExamResultResponse = ApiResponse<ExamResultData>;

@@ -73,6 +73,28 @@ export const resetPasswordSchema = z
     path: ["confirmPassword"],
   });
 
+export const forgotPasswordFormSchema = z
+  .object({
+    email: z
+      .string()
+      .min(1, "Email is required")
+      .pipe(z.email("Please enter a valid email address")),
+    otp: z
+      .string()
+      .min(1, "Verification code is required")
+      .length(6, "Verification code must be 6 digits")
+      .regex(/^\d+$/, "Verification code must contain only numbers"),
+    password: z
+      .string()
+      .min(1, "Password is required")
+      .min(6, { message: "Password must be at least 6 characters" }),
+    confirmPassword: z.string().min(1, "Confirm password is required"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
+
 export const profileSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),

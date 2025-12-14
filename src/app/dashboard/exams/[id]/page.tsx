@@ -16,7 +16,6 @@ export default async function Page({ params }: PageProps) {
   if ("code" in response) {
     throw new Error(response.message);
   }
-
   const questions = response.questions;
 
   if (!questions || questions.length === 0) {

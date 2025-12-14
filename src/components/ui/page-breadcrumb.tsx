@@ -19,8 +19,17 @@ export default function PageBreadcrumb() {
   let segments = pathname.split("/").filter(Boolean); // ["dashboard", "account", "change-password"]
   segments = segments.filter((seg) => seg !== "dashboard"); // Remove 'dashboard' segment => ["account", "change-password"]
 
+  // Replace exam ID with "Questions"
+  const processedSegments = segments.map((seg, index) => {
+    // If previous segment is "exams" and current looks like an ID (long alphanumeric)
+    if (index > 0 && segments[index - 1] === "exams" && seg.length > 10) {
+      return "questions";
+    }
+    return seg;
+  });
+
   // Add Home at the beginning
-  const pathes = ["Home", ...segments]; // ["Home", "account", "change-password"]
+  const pathes = ["Home", ...processedSegments]; // ["Home", "account", "change-password"]
 
   // Helper functions to convert cable-case to Title Case
   const autoFormat = (str: string) =>
@@ -39,7 +48,7 @@ export default function PageBreadcrumb() {
   const getHref = (item: string, index: number) => {
     if (item === "Home") return "/";
     if (index === 0) return "/";
-    // Build path from segments up to current index (excluding Home)
+    // Build path from original segments (not processed), up to current index
     const segmentsUpToHere = segments.slice(0, index);
     return "/dashboard/" + segmentsUpToHere.join("/");
   };

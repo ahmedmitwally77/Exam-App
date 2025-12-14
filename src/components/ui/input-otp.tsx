@@ -40,8 +40,8 @@ const InputOTPSlot = React.forwardRef<
   return (
     <div
       ref={ref}
+      autoFocus={isActive}
       className={cn(
-
         "relative w-12 h-12 text-base border-gray-200 !rounded-none data-[active=true]:border-blue-600 flex items-center justify-center border-r transition-all first:border-l",
         isActive && "z-10 ring-2 text-blue-600 ring-blue-600",
         className
