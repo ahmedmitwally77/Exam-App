@@ -10,19 +10,25 @@ A modern, full-featured online examination system built with Next.js 14, TypeScr
 ## 📖 Documentation & Resources
 
 ### 🎨 Design System
+
 **Figma Design Files** - Complete UI/UX design system
+
 - [View Figma Design](https://www.figma.com/design/Jp03ixGLc6c663aqWknMfE/Exam-App--Enhanced-?node-id=0-1&t=SQbpcUtYfdaUGRRq-1)
 - Includes all screens, components, and design tokens
 - Enhanced mobile and desktop layouts
 
 ### 🌐 API Documentation
+
 **Postman API Documentation** - Complete API reference
+
 - [View API Docs](https://documenter.getpostman.com/view/5709532/2sAXxMfYUf)
 - All endpoints with request/response examples
 - Authentication flow documentation
 
 ### 📂 Project Architecture
+
 **Folder Structure Visualization** - Interactive project structure
+
 - [View Folder Structure](https://www.figma.com/board/xTYoVx0ZW5vRDggmp00ITG/Folder-structure?node-id=0-1&t=N4GzScFqqmC7JjN7-1)
 - Visual representation of project organization
 - Component relationships and dependencies
@@ -30,6 +36,7 @@ A modern, full-featured online examination system built with Next.js 14, TypeScr
 ## ✨ Features
 
 ### 🔐 Authentication System
+
 - **User Registration** - Create new accounts with email verification
 - **Secure Login** - JWT-based authentication with NextAuth.js
 - **Password Recovery** - Multi-step password reset process with OTP verification
@@ -40,6 +47,7 @@ A modern, full-featured online examination system built with Next.js 14, TypeScr
 - **Protected Routes** - Middleware-based route protection
 
 ### 👤 User Account Management
+
 - **Profile Management**
   - Update personal information
   - Change profile picture
@@ -50,12 +58,14 @@ A modern, full-featured online examination system built with Next.js 14, TypeScr
 - **Account Settings** - Comprehensive account customization
 
 ### 📊 Dashboard
+
 - **Subject Overview** - Visual grid display of available diplomas/subjects
 - **Beautiful Card Layout** - Hover effects and smooth transitions
 - **Responsive Design** - Optimized for all screen sizes
 - **Quick Navigation** - Easy access to exams and account settings
 
 ### 📝 Examination System
+
 - **Exam Listing** - Browse available exams by subject
 - **Exam Details**
   - Exam duration
@@ -72,6 +82,7 @@ A modern, full-featured online examination system built with Next.js 14, TypeScr
 - **Exam Submission** - Secure answer submission and results
 
 ### 🎨 UI Components
+
 - **Modern Design System** - Built with Radix UI primitives
 - **Custom Components**
   - Responsive navigation
@@ -86,12 +97,14 @@ A modern, full-featured online examination system built with Next.js 14, TypeScr
 - **Animations** - Smooth transitions and hover effects
 
 ### 📱 Responsive Features
+
 - **Mobile-First Design** - Optimized for mobile devices
 - **Tablet Support** - Perfect layout for medium screens
 - **Desktop Optimization** - Full-featured desktop experience
 - **Touch-Friendly** - Large touch targets and intuitive gestures
 
 ### 🛡️ Security Features
+
 - **CSRF Protection** - Built-in security measures
 - **Input Validation** - Zod schema validation
 - **Sanitized Inputs** - XSS prevention
@@ -101,21 +114,25 @@ A modern, full-featured online examination system built with Next.js 14, TypeScr
 ## 🚀 Tech Stack
 
 ### Core Technologies
+
 - **Next.js 14.2** - React framework with App Router
 - **React 18** - Latest React features
 - **TypeScript** - Type-safe development
 - **TailwindCSS** - Utility-first styling
 
 ### State Management & Data Fetching
+
 - **React Query (TanStack Query)** - Server state management
 - **React Hook Form** - Form state management
 - **Zod** - Schema validation
 
 ### Authentication
+
 - **NextAuth.js 4.24** - Complete authentication solution
 - **JWT** - Token-based authentication
 
 ### UI Components & Libraries
+
 - **Radix UI** - Unstyled, accessible UI primitives
   - Alert Dialog
   - Avatar
@@ -134,6 +151,7 @@ A modern, full-featured online examination system built with Next.js 14, TypeScr
 - **Sonner** - Toast notifications
 
 ### Development Tools
+
 - **ESLint** - Code linting
 - **Geist Font** - Modern typography
 - **Class Variance Authority** - Component variants
@@ -190,18 +208,21 @@ exam-app/
 ## 🛠️ Installation & Setup
 
 ### Prerequisites
+
 - Node.js 18+ and pnpm installed
 - Git for version control
 
 ### Installation Steps
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/ahmedmitwally77/Exam-App.git
 cd exam-app
 ```
 
 2. **Install dependencies**
+
 ```bash
 pnpm install
 ```
@@ -223,12 +244,13 @@ NEXT_PUBLIC_API_URL=your-api-url-here
 ```
 
 4. **Run the development server**
+
 ```bash
 pnpm dev
 ```
 
 5. **Open your browser**
-Navigate to [http://localhost:3000](http://localhost:3000)
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 🎯 Available Scripts
 
@@ -240,27 +262,30 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 ## 🔧 Configuration
 
 ### NextAuth Configuration
+
 The authentication is configured in `src/auth.ts` with custom pages and JWT strategy.
 
 ### Middleware
+
 Route protection is handled in `src/middleware.ts` to secure dashboard routes.
 
 ### API Integration
+
 All API services are organized in `_services` folders within their respective feature directories.
 
 ## 📱 Key Pages
 
-| Route | Description |
-|-------|-------------|
-| `/` | Home page |
-| `/login` | User login |
-| `/register` | User registration |
-| `/forgot-password` | Password recovery |
-| `/dashboard` | Main dashboard with subjects |
-| `/dashboard/exams` | Exam listing |
-| `/dashboard/exams/[id]` | Individual exam page |
-| `/dashboard/account` | Account settings |
-| `/dashboard/account/change-password` | Change password |
+| Route                                | Description                  |
+| ------------------------------------ | ---------------------------- |
+| `/`                                  | Home page                    |
+| `/login`                             | User login                   |
+| `/register`                          | User registration            |
+| `/forgot-password`                   | Password recovery            |
+| `/dashboard`                         | Main dashboard with subjects |
+| `/dashboard/exams`                   | Exam listing                 |
+| `/dashboard/exams/[id]`              | Individual exam page         |
+| `/dashboard/account`                 | Account settings             |
+| `/dashboard/account/change-password` | Change password              |
 
 ## 🎨 Design Philosophy
 
@@ -287,6 +312,7 @@ This project is private and proprietary.
 ## 👨‍💻 Author
 
 **Ahmed Mitwally**
+
 - GitHub: [@ahmedmitwally77](https://github.com/ahmedmitwally77)
 
 ## 🙏 Acknowledgments
