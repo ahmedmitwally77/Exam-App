@@ -14,10 +14,9 @@ export default function AccountLayout({ children }: Props) {
         title="Account Settings"
         icon={<User className="w-11 h-11 text-white" strokeWidth={2} />}
       />
-      <div className="flex gap-6">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
         {/* Sidebar */}
         <AccountSidebar />
-
         {/* Content */}
         <div className="flex-1">{children}</div>
       </div>

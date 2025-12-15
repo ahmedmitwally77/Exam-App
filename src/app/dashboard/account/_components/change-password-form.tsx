@@ -11,45 +11,53 @@ import {
 } from "@/components/ui/form";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils/tailwind-merge";
 import { changePasswordSchema } from "@/lib/schemas/auth.schema";
-
-type ChangePasswordFields = z.infer<typeof changePasswordSchema>;
+import { ChangePasswordFields } from "@/lib/types/auth";
+import useChangePassword from "../_hooks/use-change-password";
+import { ErrorMessage } from "@/components/ui/error-message";
 
 export default function ChangePasswordForm() {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const { changePassword, isPending, error } = useChangePassword();
+
   // Form
   const form = useForm<ChangePasswordFields>({
     defaultValues: {
-      currentPassword: "",
-      newPassword: "",
-      confirmNewPassword: "",
+      oldPassword: "",
+      password: "",
+      rePassword: "",
     },
     resolver: zodResolver(changePasswordSchema),
   });
 
   const onSubmit: SubmitHandler<ChangePasswordFields> = async (values) => {
-    console.log(values);
-    // Here you would call your API to change password
+    changePassword(values, {
+      onSuccess: () => {
+        form.reset();
+      },
+    });
   };
 
   return (
-    <div className="p-8 h-full bg-white">
+    <div className="p-4 lg:p-8 h-full bg-white">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-4 lg:space-y-6"
+        >
           {/* Current Password */}
           <FormField
             control={form.control}
-            name="currentPassword"
+            name="oldPassword"
             render={({ field, fieldState }) => (
               <FormItem>
-                <FormLabel className="text-base font-medium text-gray-800">
+                <FormLabel className="text-sm lg:text-base font-medium text-gray-800">
                   Current Password
                 </FormLabel>
                 <FormControl>
@@ -59,7 +67,7 @@ export default function ChangePasswordForm() {
                       type={showCurrentPassword ? "text" : "password"}
                       placeholder="••••••••"
                       className={cn(
-                        "h-12 focus:ring-blue-600 focus:ring-2 focus:outline-none placeholder:text-gray-400 border-gray-200 pr-10",
+                        "h-11 lg:h-12 focus:ring-blue-600 focus:ring-2 focus:outline-none placeholder:text-gray-400 border-gray-200 pr-10",
                         fieldState.error && "border-red-500 focus:ring-red-500"
                       )}
                     />
@@ -86,10 +94,10 @@ export default function ChangePasswordForm() {
           {/* New Password */}
           <FormField
             control={form.control}
-            name="newPassword"
+            name="password"
             render={({ field, fieldState }) => (
               <FormItem>
-                <FormLabel className="text-base font-medium text-gray-800">
+                <FormLabel className="text-sm lg:text-base font-medium text-gray-800">
                   New Password
                 </FormLabel>
                 <FormControl>
@@ -99,7 +107,7 @@ export default function ChangePasswordForm() {
                       type={showNewPassword ? "text" : "password"}
                       placeholder="••••••••"
                       className={cn(
-                        "h-12 focus:ring-blue-600 focus:ring-2 focus:outline-none placeholder:text-gray-400 border-gray-200 pr-10",
+                        "h-11 lg:h-12 focus:ring-blue-600 focus:ring-2 focus:outline-none placeholder:text-gray-400 border-gray-200 pr-10",
                         fieldState.error && "border-red-500 focus:ring-red-500"
                       )}
                     />
@@ -124,10 +132,10 @@ export default function ChangePasswordForm() {
           {/* Confirm New Password */}
           <FormField
             control={form.control}
-            name="confirmNewPassword"
+            name="rePassword"
             render={({ field, fieldState }) => (
               <FormItem>
-                <FormLabel className="text-base font-medium text-gray-800">
+                <FormLabel className="text-sm lg:text-base font-medium text-gray-800">
                   Confirm New Password
                 </FormLabel>
                 <FormControl>
@@ -137,7 +145,7 @@ export default function ChangePasswordForm() {
                       type={showConfirmPassword ? "text" : "password"}
                       placeholder="••••••••"
                       className={cn(
-                        "h-12 focus:ring-blue-600 focus:ring-2 focus:outline-none placeholder:text-gray-400 border-gray-200 pr-10",
+                        "h-11 lg:h-12 focus:ring-blue-600 focus:ring-2 focus:outline-none placeholder:text-gray-400 border-gray-200 pr-10",
                         fieldState.error && "border-red-500 focus:ring-red-500"
                       )}
                     />
@@ -161,11 +169,15 @@ export default function ChangePasswordForm() {
             )}
           />
 
+          {/* error message */}
+          {error && <ErrorMessage message={error.message} />}
+
           {/* Submit Button */}
           <div className="pt-4">
             <Button
+              disabled={isPending}
               type="submit"
-              className="h-12 px-8 bg-blue-600 hover:bg-blue-700 text-white font-medium"
+              className="h-11 lg:h-12 px-6 lg:px-8 font-medium"
             >
               Update Password
             </Button>
