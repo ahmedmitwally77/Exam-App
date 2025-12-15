@@ -4,10 +4,14 @@ import "./globals.css";
 import { GeistMono } from "geist/font/mono";
 import Providers from "@/components/providers";
 
-
 export const metadata: Metadata = {
   title: "Exam App",
   description: "A simple exam app built with Next.js and Tailwind CSS",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 const inter = Inter({
