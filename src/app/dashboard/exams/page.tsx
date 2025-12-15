@@ -19,23 +19,23 @@ export default async function Page() {
     <div className="min-h-screen w-full">
       <PageHeader title="Exams" icon={<BookOpenCheck className="w-11 h-11 text-white" />} />
       {/* Exams List */}
-      <div className="space-y-4 mb-4 p-6 bg-white">
+      <div className="space-y-4 mb-4 lg:p-6 bg-white">
         {exams.map((exam: Exam) => (
           <Link
             href={`/dashboard/exams/${exam._id}`}
             key={exam._id}
-            className="block bg-blue-50 font-geistMono p-4 cursor-pointer hover:bg-blue-100 transition-colors"
+            className="block bg-blue-50 font-geistMono p-3 lg:p-4 cursor-pointer hover:bg-blue-100 transition-colors"
           >
             <div className="flex items-center justify-between">
               <div className="flex-1">
-                <h3 className="text-blue-600 text-xl font-semibold mb-2">
+                <h3 className="text-blue-600 text-base lg:text-xl font-semibold mb-2">
                   {exam.title}
                 </h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-xs lg:text-sm text-gray-500">
                   {exam.numberOfQuestions} Questions
                 </p>
               </div>
-              <div className="flex items-center gap-1 text-sm  text-gray-800">
+              <div className="flex items-center gap-1 text-xs lg:text-sm  text-gray-800">
                 <Timer className="w-4 h-4" />
                 <span>Duration: {exam.duration} minutes</span>
               </div>

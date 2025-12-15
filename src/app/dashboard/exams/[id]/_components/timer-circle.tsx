@@ -12,8 +12,11 @@ export default function TimerCircle({ duration, timeLeft }: TimerCircleProps) {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="relative w-20 h-20">
-        <svg className="w-20 h-20 -rotate-90">
+      <div className="relative w-16 h-16 lg:w-20 lg:h-20">
+        <svg
+          className="w-16 h-16 lg:w-20 lg:h-20 -rotate-90"
+          viewBox="0 0 80 80"
+        >
           <circle
             cx="40"
             cy="40"
@@ -40,7 +43,7 @@ export default function TimerCircle({ duration, timeLeft }: TimerCircleProps) {
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-sm font-semibold text-gray-700">
+          <span className="text-xs lg:text-sm font-semibold text-gray-700">
             {formatTime(timeLeft)}
           </span>
         </div>

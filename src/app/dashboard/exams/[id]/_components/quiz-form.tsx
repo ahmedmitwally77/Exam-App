@@ -148,7 +148,7 @@ export default function QuizForm({ questions }: QuizFormProps) {
         }
         title={question.exam.title}
       />
-      <div className="min-h-screen bg-white px-6 py-4 font-geistMono">
+      <div className="min-h-screen bg-white lg:px-6 py-4 font-geistMono">
         {/* Progress Bar Section */}
         <div className="flex text-sm text-gray-500 items-center justify-between mb-2">
           <p>{question.exam.title}</p>
@@ -166,15 +166,15 @@ export default function QuizForm({ questions }: QuizFormProps) {
         <QuestionCard question={question} selectedAnswer={selectedAnswer} />
 
         {/* Navigation Buttons */}
-        <div className="flex flex-col sm:flex-row items-center mt-10 justify-between gap-4">
+        <div className="flex items-center mt-10 justify-between gap-0.5 lg:gap-4">
           <Button
             type="button"
             onClick={goToPrevious}
             disabled={currentQuestion === 0}
             variant="secondary"
-            className="flex items-center sm:flex-1 gap-2 sm:px-8 py-6 text-gray-400 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex items-center sm:flex-1 gap-2 sm:px-8 lg:py-6 text-gray-400 disabled:opacity-30 disabled:cursor-not-allowed"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-4 h-4 lg:w-5 lg:h-5" />
             <span className="font-medium">Previous</span>
           </Button>
 
@@ -193,10 +193,10 @@ export default function QuizForm({ questions }: QuizFormProps) {
             <Button
               type="button"
               onClick={goToNext}
-              className="flex items-center sm:flex-1 gap-2 bg-blue-600 hover:bg-blue-700 text-white  sm:px-8 py-6 rounded text-base"
+              className="flex items-center sm:flex-1 gap-2 bg-blue-600 hover:bg-blue-700 text-white  sm:px-8 lg:py-6 rounded text-base"
             >
               <span className="font-medium">Next</span>
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4 lg:w-5 lg:h-5" />
             </Button>
           )}
         </div>
