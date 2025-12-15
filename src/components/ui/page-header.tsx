@@ -27,19 +27,23 @@ export default function PageHeader({ title, icon }: PageHeaderProps) {
   };
 
   return (
-    <div className="flex gap-2 mb-6">
+    <div className="flex gap-2 mb-4 lg:mb-6">
       {showBackButton && (
         <button
           onClick={handleBack}
           className="bg-white p-4 border-2 border-blue-600 hover:bg-gray-50 transition-colors flex items-center justify-center"
           aria-label="Go back"
         >
-          <ArrowLeft className="w-6 h-6 text-blue-600" />
+          <ArrowLeft className="w-4 h-4 lg:w-6 lg:h-6 text-blue-600" />
         </button>
       )}
-      <div className="bg-blue-600 p-4 flex items-center gap-4 flex-1">
-        {icon}
-        <h1 className="text-3xl font-semibold text-white">{title}</h1>
+      <div className="bg-blue-600 p-2 lg:p-4 flex items-center gap-2 lg:gap-4 flex-1">
+        <div className="w-6 h-6 lg:w-auto lg:h-auto flex items-center justify-center">
+          {icon}
+        </div>
+        <h1 className="text-lg lg:text-3xl font-semibold text-white truncate">
+          {title}
+        </h1>
       </div>
     </div>
   );

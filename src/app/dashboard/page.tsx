@@ -21,12 +21,12 @@ export default async function Page() {
         }
       />
       {/* Diplomas Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2.5rem] mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-[2.5rem] mb-6">
         {diplomas.map((diploma) => (
           <Link
             href={`dashboard/exams/`}
             key={diploma._id}
-            className="group relative w-[21rem] h-[28rem] cursor-pointer overflow-hidden transition-shadow duration-300"
+            className="group relative w-full max-w-[21rem] mx-auto h-[28rem] cursor-pointer overflow-hidden transition-shadow duration-300"
           >
             <Image
               src={diploma.icon}
@@ -36,9 +36,9 @@ export default async function Page() {
               className="w-full h-full object-cover"
             />
             <div
-              className={`absolute bottom-0 left-0 right-0 p-4 bg-[#155DFC80] text-white backdrop-blur-[6px]`}
+              className={`absolute bottom-3 left-3 right-3 p-4 bg-[#155DFC80] hover:bg-blue-600 duration-300 transition-colors text-white backdrop-blur-[6px]`}
             >
-              <h3 className="text-xl font-semibold font-geistMono">
+              <h3 title={diploma.name} className="text-xl font-semibold font-geistMono line-clamp-1">
                 {diploma.name}
               </h3>
             </div>
@@ -47,7 +47,7 @@ export default async function Page() {
       </div>
       {/* Scroll to view more */}
       <div className="text-center p-[0.6rem]">
-        <p className="text-base text-gray-600 mb-2 font-geistMono">
+        <p className="text-sm lg:text-base text-gray-600 mb-2 font-geistMono">
           Scroll to view more
         </p>
         <div className="flex justify-center">

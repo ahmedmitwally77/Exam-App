@@ -54,7 +54,7 @@ export default function PageBreadcrumb() {
   };
 
   return (
-    <div className="p-4 bg-white BreadcrumbContainer">
+    <div className="p-3 lg:p-4 bg-white BreadcrumbContainer">
       <Breadcrumb aria-label="Page Breadcrumb">
         <BreadcrumbList>
           {pathes.map((item, index) => {
@@ -65,7 +65,10 @@ export default function PageBreadcrumb() {
             return (
               <React.Fragment key={index}>
                 <BreadcrumbItem>
-                  <BreadcrumbLink className="font-geistMono text-sm" asChild>
+                  <BreadcrumbLink
+                    className="font-geistMono text-xs lg:text-sm"
+                    asChild
+                  >
                     <Link
                       className={
                         isLast
