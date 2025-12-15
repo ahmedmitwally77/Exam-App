@@ -13,7 +13,11 @@ export const loginSchema = z.object({
   password: z
     .string()
     .min(1, "Password is required")
-    .min(6, { error: "Password must be at least 6 characters" }),
+    .min(8, "Password must be at least 8 characters")
+    .regex(
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+      "Password must contain uppercase, lowercase, number, and special character"
+    ),
 });
 
 export const registerSchema = z
@@ -37,7 +41,11 @@ export const registerSchema = z
     password: z
       .string()
       .min(1, "Password is required")
-      .min(6, { message: "Password must be at least 6 characters" }),
+      .min(8, "Password must be at least 8 characters")
+      .regex(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+        "Password must contain uppercase, lowercase, number, and special character"
+      ),
     rePassword: z.string().min(1, "Confirm password is required"),
   })
   .refine((data) => data.password === data.rePassword, {
@@ -65,7 +73,11 @@ export const resetPasswordSchema = z
     password: z
       .string()
       .min(1, "Password is required")
-      .min(6, { message: "Password must be at least 6 characters" }),
+      .min(8, "Password must be at least 8 characters")
+      .regex(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+        "Password must contain uppercase, lowercase, number, and special character"
+      ),
     confirmPassword: z.string().min(1, "Confirm password is required"),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -87,7 +99,11 @@ export const forgotPasswordFormSchema = z
     password: z
       .string()
       .min(1, "Password is required")
-      .min(6, { message: "Password must be at least 6 characters" }),
+      .min(8, "Password must be at least 8 characters")
+      .regex(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+        "Password must contain uppercase, lowercase, number, and special character"
+      ),
     confirmPassword: z.string().min(1, "Confirm password is required"),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -96,36 +112,42 @@ export const forgotPasswordFormSchema = z
   });
 
 export const profileSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
+  firstName: z.string().min(1, "First name is required").optional(),
+  lastName: z.string().min(1, "Last name is required").optional(),
   username: z
     .string()
     .min(1, "Username is required")
-    .min(3, "Username must be at least 3 characters"),
-  email: z.email({
-    error: (issue) =>
-      !issue.input ? "Email is required" : "Please enter a valid email address",
-  }),
+    .min(3, "Username must be at least 3 characters")
+    .optional(),
+  email: z
+    .email({
+      error: (issue) =>
+        !issue.input
+          ? "Email is required"
+          : "Please enter a valid email address",
+    })
+    .optional(),
   phone: z
     .string()
     .min(1, "Phone number is required")
-    .min(10, "Phone number must be at least 10 digits"),
+    .min(10, "Phone number must be at least 10 digits")
+    .optional(),
 });
 
 export const changePasswordSchema = z
   .object({
-    currentPassword: z.string().min(1, "Current password is required"),
-    newPassword: z
+    oldPassword: z.string().min(1, "Current password is required"),
+    password: z
       .string()
       .min(1, "New password is required")
       .min(8, "Password must be at least 8 characters")
       .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-        "Password must contain uppercase, lowercase, and number"
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+        "Password must contain uppercase, lowercase, number, and special character"
       ),
-    confirmNewPassword: z.string().min(1, "Please confirm your password"),
+    rePassword: z.string().min(1, "Please confirm your password"),
   })
-  .refine((data) => data.newPassword === data.confirmNewPassword, {
+  .refine((data) => data.password === data.rePassword, {
     message: "Passwords do not match",
-    path: ["confirmNewPassword"],
+    path: ["rePassword"],
   });

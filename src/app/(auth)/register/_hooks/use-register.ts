@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { registerService } from "../_services/register.service";
 import { useRouter } from "next/navigation";
 import { RegisterFields } from "@/lib/types/auth";
+import { toast } from "sonner";
 
 export default function useRegister() {
   // Navigation
@@ -17,8 +18,7 @@ export default function useRegister() {
       return payload;
     },
     onSuccess: () => {
-      // Show toast
-
+      toast.success("Account created successfully");
       router.push("/login");
     },
   });

@@ -40,10 +40,10 @@ export function LoginForm() {
   };
 
   return (
-    <div className="w-full h-full  flex flex-col justify-center items-center max-w-md mx-auto space-y-8">
+    <div className="w-full h-full flex flex-col justify-center items-center max-w-md mx-auto space-y-8">
       {/* Form */}
       <div className="w-full">
-        <h1 className="text-3xl font-bold text-gray-800 mb-10">Login</h1>
+        <h1 className="text-3xl font-bold text-center lg:text-start text-gray-800 mb-10">Login</h1>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>

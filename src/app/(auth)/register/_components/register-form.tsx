@@ -53,7 +53,7 @@ export function RegisterForm() {
     <div className="w-full h-full py-36 flex flex-col justify-center items-center max-w-md mx-auto space-y-8">
       {/* Form */}
       <div className="w-full">
-        <h1 className="text-3xl font-bold text-gray-800 mb-10">
+        <h1 className="text-3xl font-bold  text-center lg:text-start text-gray-800 mb-10">
           Create Account
         </h1>
 
