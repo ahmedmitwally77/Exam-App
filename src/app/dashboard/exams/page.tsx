@@ -19,7 +19,7 @@ export default async function Page() {
     <div className="min-h-screen w-full">
       <PageHeader title="Exams" icon={<BookOpenCheck className="w-11 h-11 text-white" />} />
       {/* Exams List */}
-      <div className="space-y-4 mb-4 lg:p-6 bg-white">
+      <div className="space-y-4 mb-4 px-1 lg:p-6 bg-white">
         {exams.map((exam: Exam) => (
           <Link
             href={`/dashboard/exams/${exam._id}`}

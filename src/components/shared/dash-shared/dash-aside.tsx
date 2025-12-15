@@ -55,7 +55,7 @@ export default function DashAside({ isOpen, onClose }: Props) {
         className={`
           fixed lg:static
           top-0 left-0
-          w-[16rem] lg:w-[22.625rem] lg:min-h-screen
+          w-[16rem] lg:w-[22.625rem] min-h-screen
           p-6 lg:p-10 bg-blue-50
           border-r border-[#E8ECF4]
           justify-between flex flex-col

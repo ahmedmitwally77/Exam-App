@@ -148,7 +148,7 @@ export default function QuizForm({ questions }: QuizFormProps) {
         }
         title={question.exam.title}
       />
-      <div className="min-h-screen bg-white lg:px-6 py-4 font-geistMono">
+      <div className="min-h-screen bg-white px-1 lg:px-6 py-4 font-geistMono">
         {/* Progress Bar Section */}
         <div className="flex text-sm text-gray-500 items-center justify-between mb-2">
           <p>{question.exam.title}</p>
