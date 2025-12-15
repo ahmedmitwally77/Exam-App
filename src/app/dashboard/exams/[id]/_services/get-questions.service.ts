@@ -9,7 +9,7 @@ export async function getQuestionsByExam(
     throw new Error("No token found");
   }
   const response = await fetch(
-    `https://exam.elevateegy.com/api/v1/questions?exam=${examId}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/questions?exam=${examId}`,
     {
       method: "GET",
       headers: {

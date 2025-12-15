@@ -34,6 +34,9 @@ export default function TimerCircle({ duration, timeLeft }: TimerCircleProps) {
               2 * Math.PI * 36 * (timeLeft / (duration * 60))
             }`}
             strokeLinecap="round"
+            style={{
+              transition: "stroke-dashoffset 0.2s ease-out",
+            }}
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">

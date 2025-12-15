@@ -26,9 +26,5 @@ export default async function Page({ params }: PageProps) {
     );
   }
 
-  return (
-    <div>
-      <QuizForm questions={questions} />
-    </div>
-  );
+  return <QuizForm questions={questions} />;
 }

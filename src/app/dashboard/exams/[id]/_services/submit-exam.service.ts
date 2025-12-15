@@ -9,7 +9,7 @@ export async function submitExam(
     throw new Error("No token found");
   }
   const response = await fetch(
-    `https://exam.elevateegy.com/api/v1/questions/check`,
+    `${process.env.NEXT_PUBLIC_API_URL}/questions/check`,
     {
       method: "POST",
       headers: {

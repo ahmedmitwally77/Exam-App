@@ -14,8 +14,9 @@ export default function QuestionCard({
   const questionFieldName = `question_id_${question._id}`;
 
   return (
+    // Key For React to identify list items
     <div key={question._id} className="bg-white rounded-lg mt-10 mb-6">
-      <h2 className="text-blue-600 text-2xl font-semibold mb-4">
+      <h2 className="text-blue-600 text-xl lg:text-2xl font-semibold mb-4">
         {question.question}
       </h2>
 
@@ -26,7 +27,7 @@ export default function QuestionCard({
             className={`flex items-center gap-3 p-4 bg-gray-50 rounded cursor-pointer transition-all ${
               selectedAnswer === answer.key
                 ? "ring-2 ring-blue-600 bg-gray-300"
-                : "hover:bg-gray-100"
+                : "hover:bg-gray-200"
             }`}
           >
             <input
@@ -35,7 +36,9 @@ export default function QuestionCard({
               {...register(questionFieldName)}
               className="w-5 h-5 text-blue-600 accent-blue-600 focus:ring-blue-600"
             />
-            <span className="text-gray-800">{answer.answer}</span>
+            <span className="text-gray-800 text-xs lg:text-sm">
+              {answer.answer}
+            </span>
           </label>
         ))}
       </div>

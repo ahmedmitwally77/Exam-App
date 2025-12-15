@@ -11,6 +11,7 @@ import TimerCircle from "./timer-circle";
 import QuestionCard from "./question-card";
 import ExamResults from "./exam-results";
 import useSubmitExam from "../_hooks/use-submit-exam";
+import { toast } from "sonner";
 
 interface QuizFormProps {
   questions: Question[];
@@ -25,9 +26,11 @@ export default function QuizForm({ questions }: QuizFormProps) {
   const [examResults, setExamResults] = useState<ExamResultData | null>(null);
   const [timeLeft, setTimeLeft] = useState(0);
   const [startTime] = useState(Date.now());
+
   const totalQuestions = questions.length;
   const question = questions[currentQuestion];
   const questionFieldName = `question_id_${question._id}`;
+  const duration = question.exam.duration || 0;
 
   const methods = useForm<FormData>({
     shouldUnregister: false,
@@ -35,16 +38,15 @@ export default function QuizForm({ questions }: QuizFormProps) {
 
   const { handleSubmit, watch } = methods;
   const router = useRouter();
-
   const { isPending, submitExam } = useSubmitExam();
-
-  const duration = question.exam.duration || 0;
-
   const selectedAnswer = watch(questionFieldName);
+
+  // Initialize timer
   useEffect(() => {
     setTimeLeft(duration * 60);
   }, [duration]);
 
+  // Timer countdown
   useEffect(() => {
     if (timeLeft <= 0) return;
 
@@ -64,6 +66,7 @@ export default function QuizForm({ questions }: QuizFormProps) {
   if (!question) {
     return null;
   }
+
   const onSubmit = (data: FormData) => {
     const timeSpent = Math.floor((Date.now() - startTime) / 1000 / 60);
 
@@ -86,10 +89,13 @@ export default function QuizForm({ questions }: QuizFormProps) {
 
     submitExam(payload, {
       onSuccess: (result) => {
+        toast.success("Exam submitted successfully.");
         setExamResults(result);
       },
       onError: (error) => {
-        alert("Failed to submit exam: " + error.message);
+        toast.error(
+          error.message || "Failed to submit exam. Please try again."
+        );
       },
     });
   };
@@ -133,22 +139,19 @@ export default function QuizForm({ questions }: QuizFormProps) {
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="min-h-screen bg-white px-6 py-4 font-geistMono"
-      >
-        <PageHeader
-          icon={
-            <CircleQuestionMark
-              className="w-11 h-11 text-white"
-              strokeWidth={2}
-            />
-          }
-          title={question.exam.title}
-        />
+      <PageHeader
+        icon={
+          <CircleQuestionMark
+            className="w-11 h-11 text-white"
+            strokeWidth={2}
+          />
+        }
+        title={question.exam.title}
+      />
+      <div className="min-h-screen bg-white px-6 py-4 font-geistMono">
         {/* Progress Bar Section */}
-        <div className="flex text-sm text-gray-500  items-center justify-between mb-2">
-          <p className="">{question.exam.title}</p>
+        <div className="flex text-sm text-gray-500 items-center justify-between mb-2">
+          <p>{question.exam.title}</p>
           <p className="font-medium">
             Question{" "}
             <span className="font-semibold text-blue-600">
@@ -163,13 +166,13 @@ export default function QuizForm({ questions }: QuizFormProps) {
         <QuestionCard question={question} selectedAnswer={selectedAnswer} />
 
         {/* Navigation Buttons */}
-        <div className="flex items-center mt-10 justify-between gap-4">
+        <div className="flex flex-col sm:flex-row items-center mt-10 justify-between gap-4">
           <Button
             type="button"
             onClick={goToPrevious}
             disabled={currentQuestion === 0}
             variant="secondary"
-            className="flex items-center flex-1 gap-2 px-8 py-6 text-gray-400 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex items-center sm:flex-1 gap-2 sm:px-8 py-6 text-gray-400 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ChevronLeft className="w-5 h-5" />
             <span className="font-medium">Previous</span>
@@ -177,26 +180,27 @@ export default function QuizForm({ questions }: QuizFormProps) {
 
           <TimerCircle duration={duration} timeLeft={timeLeft} />
 
-          {!isLastQuestion ? (
+          {isLastQuestion ? (
+            <Button
+              type="button"
+              onClick={handleSubmit(onSubmit)}
+              disabled={isPending}
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white sm:px-8 py-6 rounded text-base font-medium disabled:opacity-50"
+            >
+              {isPending ? "loading..." : "Submit Quiz"}
+            </Button>
+          ) : (
             <Button
               type="button"
               onClick={goToNext}
-              className="flex items-center flex-1 gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded text-base"
+              className="flex items-center sm:flex-1 gap-2 bg-blue-600 hover:bg-blue-700 text-white  sm:px-8 py-6 rounded text-base"
             >
               <span className="font-medium">Next</span>
               <ChevronRight className="w-5 h-5" />
             </Button>
-          ) : (
-            <Button
-              type="submit"
-              disabled={isPending}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 rounded text-base font-medium disabled:opacity-50"
-            >
-              {isPending ? "Submitting..." : "Submit Quiz"}
-            </Button>
           )}
         </div>
-      </form>
+      </div>
     </FormProvider>
   );
 }

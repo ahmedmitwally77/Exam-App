@@ -13,7 +13,6 @@ export async function getExamsBySubject(): Promise<ApiResponse<ExamsData>> {
     headers: {
       token: token.accessToken,
     },
-    cache: "no-store",
   });
 
   const payload = await response.json();
