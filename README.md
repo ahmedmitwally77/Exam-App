@@ -7,6 +7,26 @@ A modern, full-featured online examination system built with Next.js 14, TypeScr
 ![TailwindCSS](https://img.shields.io/badge/Tailwind-3.0-38bdf8?style=for-the-badge&logo=tailwind-css)
 ![React Query](https://img.shields.io/badge/React_Query-5.0-ff4154?style=for-the-badge&logo=react-query)
 
+## 📖 Documentation & Resources
+
+### 🎨 Design System
+**Figma Design Files** - Complete UI/UX design system
+- [View Figma Design](https://www.figma.com/design/Jp03ixGLc6c663aqWknMfE/Exam-App--Enhanced-?node-id=0-1&t=SQbpcUtYfdaUGRRq-1)
+- Includes all screens, components, and design tokens
+- Enhanced mobile and desktop layouts
+
+### 🌐 API Documentation
+**Postman API Documentation** - Complete API reference
+- [View API Docs](https://documenter.getpostman.com/view/5709532/2sAXxMfYUf)
+- All endpoints with request/response examples
+- Authentication flow documentation
+
+### 📂 Project Architecture
+**Folder Structure Visualization** - Interactive project structure
+- [View Folder Structure](https://www.figma.com/board/xTYoVx0ZW5vRDggmp00ITG/Folder-structure?node-id=0-1&t=N4GzScFqqmC7JjN7-1)
+- Visual representation of project organization
+- Component relationships and dependencies
+
 ## ✨ Features
 
 ### 🔐 Authentication System
