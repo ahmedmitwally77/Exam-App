@@ -187,7 +187,7 @@ export default function QuizForm({ questions }: QuizFormProps) {
               disabled={isPending}
               className="flex-1 bg-blue-600 hover:bg-blue-700 text-white sm:px-8 py-6 rounded text-base font-medium disabled:opacity-50"
             >
-              {isPending ? "loading..." : "Submit Quiz"}
+              {isPending ? "loading..." : "Submit"}
             </Button>
           ) : (
             <Button
