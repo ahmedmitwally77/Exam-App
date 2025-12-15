@@ -160,7 +160,7 @@ export function ForgotPasswordForm() {
 
   if (!isMounted) {
     return (
-      <div className="w-3/5 mx-auto h-full  flex items-center justify-center">
+      <div className="max-w-md mx-auto h-full  flex items-center justify-center">
         <div className="animate-pulse w-full">
           <div className="h-8 w-52 bg-gray-200 rounded mb-6"></div>
           <div className="h-4 w-64 bg-gray-200 rounded mb-10"></div>

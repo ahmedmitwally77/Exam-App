@@ -201,7 +201,7 @@ export function OtpStep({ onSubmit, onEditEmail }: OtpStepProps) {
   };
 
   return (
-    <div className="w-3/5 mx-auto">
+    <div className="max-w-md mx-auto">
       <button
         onClick={handleEditEmail}
         type="button"
@@ -210,7 +210,7 @@ export function OtpStep({ onSubmit, onEditEmail }: OtpStepProps) {
         <ArrowLeft className="h-6 w-6 text-black" />
       </button>
 
-      <h1 className="text-3xl font-bold text-gray-800 mb-[0.625rem]">
+      <h1 className="text-3xl  text-center lg:text-start font-bold text-gray-800 mb-[0.625rem]">
         Verify OTP
       </h1>
       <p className="text-base font-geistMono text-gray-500 mb-10">

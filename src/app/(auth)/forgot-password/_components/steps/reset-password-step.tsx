@@ -56,8 +56,8 @@ export function ResetPasswordStep({ onSubmit }: ResetPasswordStepProps) {
   };
 
   return (
-    <div className="w-3/5 mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-[0.625rem]">
+    <div className="max-w-md mx-auto">
+      <h1 className="text-3xl  text-center lg:text-start font-bold text-gray-800 mb-[0.625rem]">
         Reset Password
       </h1>
       <p className="text-base font-geistMono text-gray-500 mb-10">

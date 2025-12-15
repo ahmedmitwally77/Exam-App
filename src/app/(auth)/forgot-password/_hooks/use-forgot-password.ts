@@ -4,6 +4,7 @@ import {
   verifyResetCodeService,
   resetPasswordService,
 } from "../_services/forgot-password.service";
+import { toast } from "sonner";
 
 export function useSendForgotPasswordEmail() {
   const { isPending, error, mutate } = useMutation({
@@ -41,6 +42,9 @@ export function useResetPassword() {
         throw new Error(payload.message);
       }
       return payload;
+    },
+    onSuccess: () => {
+      toast.success("Password reset successfully. You can now log in.");
     },
   });
 
