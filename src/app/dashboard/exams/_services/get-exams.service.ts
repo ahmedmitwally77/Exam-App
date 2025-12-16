@@ -8,7 +8,7 @@ export async function getExamsBySubject(): Promise<ApiResponse<ExamsData>> {
     throw new Error("No token found");
   }
 
-  const response = await fetch(`${process.env.API_URL}/exams`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/exams`, {
     method: "GET",
     headers: {
       token: token.accessToken,

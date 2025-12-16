@@ -1,7 +1,7 @@
 import { LoginFields, LoginResponse } from "@/lib/types/auth";
 
 export async function loginService(fields: LoginFields) {
-  const response = await fetch(`${process.env.API_URL}/auth/signin`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/signin`, {
     method: "POST",
     body: JSON.stringify(fields),
     headers: {

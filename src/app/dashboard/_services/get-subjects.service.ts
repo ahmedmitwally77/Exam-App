@@ -7,7 +7,7 @@ export async function getAllSubjects() {
     throw new Error("No token found");
   }
   const response = await fetch(
-    `${process.env.API_URL}/subjects?limit=4&page=1`,
+    `${process.env.NEXT_PUBLIC_API_URL}/subjects?limit=4&page=1`,
     {
       method: "GET",
       headers: {
@@ -33,7 +33,7 @@ export async function getSubjectsByPage(page: number) {
   }
 
   const response = await fetch(
-    `${process.env.API_URL}/subjects?limit=1&page=${page}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/subjects?limit=1&page=${page}`,
     {
       method: "GET",
       headers: {
